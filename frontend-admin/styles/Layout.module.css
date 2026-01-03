@@ -1,0 +1,155 @@
+.container {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+}
+
+.sidebar {
+  background-color: var(--sidebar-bg);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  overflow-y: auto;
+}
+
+.sidebarOpen {
+  width: 260px;
+}
+
+.sidebarClosed {
+  width: 80px;
+}
+
+.sidebarHeader {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.toggleBtn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav {
+  flex: 1;
+  padding: 1rem 0;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.2s;
+  gap: 1rem;
+  white-space: nowrap;
+}
+
+.navItem:hover {
+  background-color: var(--sidebar-hover);
+  color: white;
+}
+
+.navItemActive {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.navIcon {
+  font-size: 1.25rem;
+  min-width: 1.25rem;
+}
+
+.sidebarFooter {
+  padding: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.userInfo {
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 1rem;
+}
+
+.userName {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.userRole {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: capitalize;
+}
+
+.logoutBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.logoutBtn:hover {
+  background-color: rgba(239, 68, 68, 0.2);
+}
+
+.main {
+  flex: 1;
+  margin-left: 260px;
+  transition: margin-left 0.3s ease;
+  padding: 2rem;
+}
+
+.sidebarClosed ~ .main {
+  margin-left: 80px;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebarOpen {
+    transform: translateX(0);
+  }
+
+  .main {
+    margin-left: 0;
+    padding: 1rem;
+  }
+}
+
