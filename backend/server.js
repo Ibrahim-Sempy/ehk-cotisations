@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./config/swagger');
 
 // Load environment variables
 dotenv.config();
@@ -37,7 +39,37 @@ if (!fs.existsSync(dbPath) && fs.existsSync(initSqlPath)) {
   });
 }
 
+// Swagger Documentation
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+  customCss: '.swagger-ui .topbar { display: none }',
+  customSiteTitle: 'API Documentation - Les Étoiles de Horè-Koubi'
+}));
+
 // Routes
+/**
+ * @swagger
+ * /api/health:
+ *   get:
+ *     summary: Vérifier l'état de l'API
+ *     tags: [Health]
+ *     responses:
+ *       200:
+ *         description: API opérationnelle
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: OK
+ *                 message:
+ *                   type: string
+ *                   example: API Les Étoiles de Horè-Koubi
+ *                 timestamp:
+ *                   type: string
+ *                   format: date-time
+ */
 app.get('/api/health', (req, res) => {
   res.json({ 
     status: 'OK', 
