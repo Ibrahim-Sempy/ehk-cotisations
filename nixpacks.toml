@@ -3,7 +3,7 @@
 # Il change de répertoire vers backend/ avant de construire
 
 [phases.setup]
-nixPkgs = ["nodejs_20", "npm"]
+nixPkgs = ["nodejs_20"]
 
 [phases.install]
 cmds = ["cd backend && npm install"]
