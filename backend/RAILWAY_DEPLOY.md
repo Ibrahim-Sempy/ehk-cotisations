@@ -24,12 +24,17 @@ Ce guide vous explique comment déployer le backend EHK sur Railway étape par �
 
 ## 🎯 Étape 3 : Configurer le service
 
-### 3.1 Sélectionner la branche et le dossier
+### 3.1 Sélectionner la branche et le dossier ⚠️ IMPORTANT
+
+**Cette étape est CRUCIALE** - Sans cela, Railway cherchera à la racine et ne trouvera pas le `package.json` !
 
 1. Dans les **Settings** du service, allez dans **"Source"**
 2. Sélectionnez la branche : **`backend`**
-3. Définissez le **Root Directory** : **`backend`**
+3. **Définissez le Root Directory** : **`backend`** (sans le slash `/`)
    - Railway va maintenant chercher les fichiers dans le dossier `backend/`
+   - ⚠️ **Vérifiez bien que le Root Directory est `backend` et non vide ou `/`**
+4. **Sauvegardez** les changements
+5. Railway devrait maintenant détecter le `package.json` dans `backend/package.json`
 
 ### 3.2 Configurer les variables d'environnement
 
