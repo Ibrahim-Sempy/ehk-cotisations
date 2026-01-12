@@ -40,15 +40,19 @@ NODE_ENV=production
 PORT=3000
 CORS_ORIGIN=https://votre-frontend-admin.vercel.app
 JWT_SECRET=votre-secret-jwt-tres-securise
-DB_PATH=/data/ehk.db
+DB_PATH=./database/ehk.db
 ```
 
 **Important pour JWT_SECRET** :
-- Générez un secret sécurisé avec cette commande :
+- **Sur Windows (PowerShell)** :
+  ```powershell
+  [Convert]::ToBase64String((1..32 | ForEach-Object { Get-Random -Minimum 0 -Maximum 256 }))
+  ```
+- **Sur Linux/Mac** :
   ```bash
   openssl rand -base64 32
   ```
-- Ou utilisez un générateur en ligne : https://randomkeygen.com/
+- **Ou utilisez un générateur en ligne** : https://randomkeygen.com/
 
 **Important pour CORS_ORIGIN** :
 - Remplacez `https://votre-frontend-admin.vercel.app` par l'URL réelle de votre frontend admin
@@ -182,14 +186,14 @@ Accédez-y via le dashboard Railway.
 
 1. Vérifiez les logs dans Railway
 2. Vérifiez que toutes les variables d'environnement sont définies
-3. Vérifiez que le volume `/data` est bien monté
+3. Vérifiez que `DB_PATH` est correctement défini
 4. Vérifiez que `PORT` est bien défini (Railway le définit automatiquement)
 
 ### La base de données est vide après redéploiement
 
-1. Vérifiez que le volume persistant est bien configuré
-2. Vérifiez que `DB_PATH=/data/ehk.db` est défini
-3. Réinitialisez la base de données si nécessaire
+1. Vérifiez que `DB_PATH` est bien défini (ex: `./database/ehk.db` ou `/data/ehk.db`)
+2. Vérifiez que le volume persistant est bien configuré (si vous utilisez `/data`)
+3. Réinitialisez la base de données si nécessaire avec `railway run npm run init-db`
 
 ### Erreur CORS
 
