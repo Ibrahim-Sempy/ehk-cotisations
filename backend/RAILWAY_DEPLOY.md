@@ -58,15 +58,39 @@ DB_PATH=./database/ehk.db
 - Remplacez `https://votre-frontend-admin.vercel.app` par l'URL réelle de votre frontend admin
 - Si vous n'avez pas encore déployé le frontend, vous pouvez utiliser `*` temporairement (moins sécurisé)
 
-### 3.3 Ajouter un volume persistant pour la base de données
+### 3.3 Configuration de la base de données SQLite
 
-1. Dans les **Settings**, allez dans **"Volumes"**
-2. Cliquez sur **"Add Volume"**
+**Option A : Utiliser le système de fichiers Railway (Recommandé - Plus simple)**
+
+Railway persiste automatiquement les fichiers dans le système de fichiers. Utilisez simplement un chemin local :
+
+1. Dans les **Variables d'environnement**, définissez :
+   ```
+   DB_PATH=./database/ehk.db
+   ```
+   (c'est déjà la valeur par défaut, vous n'avez rien à changer si vous utilisez cette option)
+
+2. Railway conservera automatiquement le fichier `database/ehk.db` entre les redéploiements.
+
+**Option B : Utiliser un volume persistant (si disponible dans votre plan)**
+
+Si vous voyez l'option "Volumes" ou "Storage" dans les Settings :
+
+1. Dans les **Settings**, cherchez **"Volumes"**, **"Storage"** ou **"Persistent Storage"**
+2. Cliquez sur **"Add Volume"**, **"Create Volume"** ou **"Add Storage"**
 3. Nommez-le : `database`
 4. Chemin du montage : `/data`
-5. Cliquez sur **"Add"**
+5. Cliquez sur **"Add"** ou **"Create"**
 
-⚠️ **Important** : Sans ce volume, votre base de données SQLite sera perdue à chaque redéploiement !
+Puis modifiez la variable d'environnement :
+```
+DB_PATH=/data/ehk.db
+```
+
+⚠️ **Important** : 
+- Si vous ne configurez pas de persistance, votre base de données SQLite sera perdue à chaque redéploiement !
+- **L'Option A (chemin local `./database/ehk.db`) fonctionne généralement bien sur Railway** et est plus simple à configurer
+- Si vous ne voyez pas l'option "Volumes", utilisez l'Option A
 
 ## 🎯 Étape 4 : Déployer
 
