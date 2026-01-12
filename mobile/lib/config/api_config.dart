@@ -16,11 +16,10 @@ class ApiConfig {
   //   (Replace with your actual production domain)
   //
   // CURRENT CONFIGURATION (PRODUCTION):
-  // - Server IP: 10.5.9.77
-  // - Port: 3000
-  // - Status: Deployed with PM2
+  // - Server URL: https://etoiles-hore-koubi.up.railway.app
+  // - Status: Deployed on Railway
   //
-  static const String baseUrl = 'http://10.5.9.77:3000/api'; // Production API (deployed)
+  static const String baseUrl = 'https://etoiles-hore-koubi.up.railway.app/api'; // Production API (Railway)
   
   // Endpoints
   static const String login = '/auth/login';
