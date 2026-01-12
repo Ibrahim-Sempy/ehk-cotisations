@@ -141,12 +141,12 @@ Une fois le déploiement terminé :
 
 4. Exécutez le script d'initialisation :
    ```bash
-   railway run npm run init-db
+   railway run sh -c "cd backend && npm run init-db"
    ```
 
 5. Créez un utilisateur admin :
    ```bash
-   railway run npm run create-admin
+   railway run sh -c "cd backend && npm run create-admin"
    ```
 
 ### Option B : Via Railway Dashboard
@@ -157,9 +157,12 @@ Une fois le déploiement terminé :
 4. Ouvrez la **console** (terminal)
 5. Exécutez :
    ```bash
+   cd backend
    npm run init-db
    npm run create-admin
    ```
+   
+   ⚠️ **Important** : N'oubliez pas de faire `cd backend` avant d'exécuter les commandes npm !
 
 ## ✅ Vérification
 
