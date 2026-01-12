@@ -2,8 +2,8 @@
 # Ce fichier doit être à la racine pour que Railway le détecte
 # Il change de répertoire vers backend/ avant de construire
 
-[providers]
-node = "20"
+[phases.setup]
+nixPkgs = ["nodejs-20_x"]
 
 [phases.install]
 cmds = ["cd backend && npm install"]
