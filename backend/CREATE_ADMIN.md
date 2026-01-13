@@ -4,7 +4,48 @@ Ce guide vous explique comment créer un utilisateur admin avec les identifiants
 - **Email** : `admin@ehk.org`
 - **Password** : `admin123`
 
-## 📋 Méthode 1 : Via Railway CLI (Recommandé)
+## 📋 Méthode 1 : Via Railway Dashboard Console (RECOMMANDÉ - Fonctionne sur tous les OS)
+
+### Étape 1 : Accéder à la console Railway
+
+1. Allez sur [railway.app](https://railway.app)
+2. Ouvrez votre projet backend
+3. Cliquez sur votre service backend
+4. Allez dans l'onglet **"Deployments"**
+5. Cliquez sur le dernier déploiement (celui avec le statut "Active")
+6. Cherchez un bouton **"View Logs"** ou **"Console"** ou **"Terminal"**
+7. Cliquez dessus pour ouvrir la console
+
+### Étape 2 : Initialiser la base de données (si pas déjà fait)
+
+Dans la console Railway, tapez :
+
+```bash
+cd backend
+npm run init-db
+```
+
+### Étape 3 : Créer l'utilisateur admin
+
+**Option A : Utiliser les identifiants par défaut (admin@ehk.org / admin123)**
+
+```bash
+npm run create-admin
+```
+
+**Option B : Spécifier explicitement les identifiants**
+
+```bash
+npm run create-admin admin@ehk.org admin123
+```
+
+⚠️ **Important** : Assurez-vous d'être dans le dossier `backend` avant d'exécuter les commandes !
+
+---
+
+## 📋 Méthode 2 : Via Railway CLI (Linux/Mac uniquement)
+
+⚠️ **Note** : Railway CLI peut avoir des problèmes sur Windows. Utilisez la Méthode 1 sur Windows.
 
 ### Étape 1 : Installer Railway CLI
 
@@ -18,34 +59,16 @@ npm i -g @railway/cli
 railway login
 ```
 
-Cela ouvrira votre navigateur pour vous connecter.
-
 ### Étape 3 : Lier votre projet
 
 ```bash
 railway link
 ```
 
-Sélectionnez votre projet Railway dans la liste.
-
-### Étape 4 : Initialiser la base de données (si pas déjà fait)
-
-```bash
-railway run sh -c "cd backend && npm run init-db"
-```
-
-### Étape 5 : Créer l'utilisateur admin
-
-**Option A : Utiliser les identifiants par défaut (admin@ehk.org / admin123)**
+### Étape 4 : Créer l'utilisateur admin
 
 ```bash
 railway run sh -c "cd backend && npm run create-admin"
-```
-
-**Option B : Spécifier explicitement les identifiants**
-
-```bash
-railway run sh -c "cd backend && npm run create-admin admin@ehk.org admin123"
 ```
 
 Vous devriez voir :
