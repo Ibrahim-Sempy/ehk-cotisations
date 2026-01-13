@@ -23,12 +23,24 @@ Ce guide vous explique comment déployer le frontend admin EHK sur Vercel étape
 
 ## 🎯 Étape 3 : Configurer le projet
 
-### 3.1 Sélectionner la branche et le dossier
+### 3.1 Sélectionner la branche et le dossier ⚠️ IMPORTANT
 
-1. Dans **"Configure Project"**, configurez :
-   - **Framework Preset** : Next.js (détecté automatiquement)
-   - **Root Directory** : Cliquez sur **"Edit"** et sélectionnez `frontend-admin`
-   - **Branch** : `frontend-admin` (ou laissez `main` si vous préférez)
+**Vous avez 2 options :**
+
+#### Option A : Utiliser la branche `frontend-admin` (RECOMMANDÉ)
+
+1. Dans la liste déroulante **"Branch"**, sélectionnez **`frontend-admin`**
+2. Laissez **Root Directory** sur `./` (le package.json est à la racine de cette branche)
+3. Vercel détectera automatiquement Next.js
+
+#### Option B : Utiliser la branche `main`
+
+1. Laissez la branche sur **`main`**
+2. Cliquez sur **"Edit"** à côté de **Root Directory**
+3. Changez `./` en **`frontend-admin`**
+4. Vercel cherchera le package.json dans `frontend-admin/package.json`
+
+⚠️ **Important** : Si vous voyez l'erreur "No Next.js version detected", c'est que le Root Directory n'est pas correct !
 
 ### 3.2 Configurer les variables d'environnement
 
