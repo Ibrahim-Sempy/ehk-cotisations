@@ -39,6 +39,30 @@ if (!fs.existsSync(dbPath) && fs.existsSync(initSqlPath)) {
   });
 }
 
+// Auto-create admin user if it doesn't exist (after a short delay to ensure DB is ready)
+setTimeout(async () => {
+  try {
+    const User = require('./models/User');
+    const adminEmail = process.env.ADMIN_EMAIL || 'admin@ehk.org';
+    const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
+    
+    const existingUser = await User.findByEmail(adminEmail);
+    if (!existingUser) {
+      const userId = await User.create(adminEmail, adminPassword, 'admin');
+      console.log('✅ Admin user created automatically');
+      console.log(`   Email: ${adminEmail}`);
+      console.log(`   Password: ${adminPassword}`);
+      console.log(`   ⚠️  Please change the default password after first login!`);
+    }
+  } catch (error) {
+    // Silently fail - admin might already exist or DB not ready yet
+    // This is not critical for server startup
+    if (process.env.NODE_ENV === 'development') {
+      console.log('ℹ️  Admin user check:', error.message);
+    }
+  }
+}, 1000);
+
 // Swagger Documentation
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
   customCss: '.swagger-ui .topbar { display: none }',
