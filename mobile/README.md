@@ -29,26 +29,28 @@ flutter pub get
 ```
 
 2. **Configurer l'URL de l'API** :
-Modifiez `lib/config/api_config.dart` :
+L'API est déjà configurée pour utiliser Railway (production) :
+- URL : `https://etoiles-hore-koubi.up.railway.app/api`
 
-**Pour émulateur Android :**
-- Utilisez : `http://10.0.2.2:3000/api`
-- `10.0.2.2` est l'adresse spéciale de l'émulateur qui pointe vers votre ordinateur
-
-**Pour appareil physique (téléphone/tablette) :**
-- Utilisez : `http://192.168.x.x:3000/api` (remplacez par votre IP locale)
-- Trouver votre IP :
-  - Windows : `ipconfig` (cherchez "Adresse IPv4")
-  - Mac/Linux : `ifconfig` ou `ip addr show`
-- ⚠️ Important : Votre téléphone et votre ordinateur doivent être sur le même réseau Wi-Fi
-
-**Pourquoi ?**
-- Sur un appareil physique, `localhost` pointe vers l'appareil lui-même, pas vers votre ordinateur
-- Il faut donc utiliser l'adresse IP locale de votre ordinateur sur le réseau
+✅ **Aucune configuration nécessaire !** L'application est prête à utiliser l'API déployée.
 
 3. **Lancer l'application** :
 ```bash
 flutter run
+```
+
+## 📱 Générer et Installer l'APK
+
+Pour installer l'application sur un appareil Android sans passer par le Play Store :
+
+👉 **[Guide complet de génération et installation d'APK](./BUILD_APK.md)**
+
+**Résumé rapide** :
+```bash
+cd mobile
+flutter build apk --release
+# L'APK sera dans : build/app/outputs/flutter-apk/app-release.apk
+# Copiez-le sur votre téléphone et installez-le
 ```
 
 ## 📱 Utilisation
