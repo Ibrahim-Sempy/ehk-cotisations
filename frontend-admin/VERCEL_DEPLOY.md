@@ -25,22 +25,38 @@ Ce guide vous explique comment déployer le frontend admin EHK sur Vercel étape
 
 ### 3.1 Sélectionner la branche et le dossier ⚠️ IMPORTANT
 
-**Vous avez 2 options :**
+**Le `package.json` se trouve dans le dossier `frontend-admin/`, donc vous DEVEZ configurer le Root Directory.**
 
-#### Option A : Utiliser la branche `frontend-admin` (RECOMMANDÉ)
+#### Étapes détaillées :
 
-1. Dans la liste déroulante **"Branch"**, sélectionnez **`frontend-admin`**
-2. Laissez **Root Directory** sur `./` (le package.json est à la racine de cette branche)
-3. Vercel détectera automatiquement Next.js
+1. **Dans la modal "Root Directory"** :
+   - Vous verrez probablement "ehk-cotisations" (la racine) et "docs" dans la liste
+   - **Ne sélectionnez PAS "ehk-cotisations"** (c'est la racine, il n'y a pas de package.json là)
 
-#### Option B : Utiliser la branche `main`
+2. **Tapez manuellement le chemin** :
+   - Cliquez dans le champ de texte (ou cherchez un champ "Type path" / "Enter path")
+   - **Tapez exactement** : `frontend-admin`
+   - ⚠️ **Sans slash au début** (pas `/frontend-admin`, juste `frontend-admin`)
+   - ⚠️ **Sans slash à la fin** (pas `frontend-admin/`, juste `frontend-admin`)
 
-1. Laissez la branche sur **`main`**
-2. Cliquez sur **"Edit"** à côté de **Root Directory**
-3. Changez `./` en **`frontend-admin`**
-4. Vercel cherchera le package.json dans `frontend-admin/package.json`
+3. **Si vous ne voyez pas de champ de texte** :
+   - Cliquez sur "ehk-cotisations" pour l'étendre (flèche à droite)
+   - Cherchez "frontend-admin" dans la liste
+   - Si vous ne le voyez toujours pas, il y a peut-être un bouton "Type path" ou "Custom path" quelque part
 
-⚠️ **Important** : Si vous voyez l'erreur "No Next.js version detected", c'est que le Root Directory n'est pas correct !
+4. **Après avoir sélectionné `frontend-admin`** :
+   - Cliquez sur **"Continue"**
+   - Vercel devrait maintenant détecter Next.js automatiquement
+
+#### Alternative : Utiliser la branche `main` (même configuration)
+
+- La branche n'a pas d'importance ici, car le `package.json` est toujours dans `frontend-admin/`
+- **Root Directory** doit être **`frontend-admin`** dans tous les cas
+
+⚠️ **Si vous voyez toujours "No Next.js version detected"** :
+- Vérifiez que vous avez bien tapé `frontend-admin` (sans slash)
+- Vérifiez qu'il n'y a pas d'espace avant ou après
+- Essayez de supprimer le projet et de le recréer avec la bonne configuration dès le début
 
 ### 3.2 Configurer les variables d'environnement
 
