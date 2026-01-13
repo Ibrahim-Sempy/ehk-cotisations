@@ -46,6 +46,9 @@ setTimeout(async () => {
     const adminEmail = process.env.ADMIN_EMAIL || 'admin@ehk.org';
     const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
     
+    // Wait a bit more to ensure database is fully ready
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
     const existingUser = await User.findByEmail(adminEmail);
     if (!existingUser) {
       const userId = await User.create(adminEmail, adminPassword, 'admin');
@@ -53,15 +56,17 @@ setTimeout(async () => {
       console.log(`   Email: ${adminEmail}`);
       console.log(`   Password: ${adminPassword}`);
       console.log(`   ⚠️  Please change the default password after first login!`);
+    } else {
+      console.log('ℹ️  Admin user already exists');
     }
   } catch (error) {
-    // Silently fail - admin might already exist or DB not ready yet
-    // This is not critical for server startup
+    // Log error but don't fail server startup
+    console.error('⚠️  Error checking/creating admin user:', error.message);
     if (process.env.NODE_ENV === 'development') {
-      console.log('ℹ️  Admin user check:', error.message);
+      console.error('Full error:', error);
     }
   }
-}, 1000);
+}, 2000);
 
 // Swagger Documentation
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {

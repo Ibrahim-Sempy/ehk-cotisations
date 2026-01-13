@@ -101,7 +101,14 @@ router.post('/login', [
     });
   } catch (error) {
     console.error('Login error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    // Log full error in development, generic message in production
+    const errorMessage = process.env.NODE_ENV === 'development' 
+      ? error.message 
+      : 'Internal server error';
+    res.status(500).json({ 
+      error: 'Internal server error',
+      message: errorMessage
+    });
   }
 });
 
