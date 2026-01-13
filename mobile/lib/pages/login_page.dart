@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/api_service.dart';
 import '../services/sync_service.dart';
-import '../config/api_config.dart';
 import 'main_page.dart';
 import 'register_page.dart';
 
@@ -131,24 +130,6 @@ class _LoginPageState extends State<LoginPage> {
                       color: Colors.grey[600],
                     ),
                     textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 24),
-                  
-                  // Info about API connection
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: Colors.blue[50],
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Text(
-                      'Serveur: ${ApiConfig.baseUrl}',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.blue[700],
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
                   ),
                   const SizedBox(height: 24),
 
